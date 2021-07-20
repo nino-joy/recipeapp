@@ -15,57 +15,57 @@ import SettingsSVG from '../assets/icons/SettingsSVG';
 const tabs = {
   Home: {
     labelStyle: {
-      color: '#5B37B7',
+      color: '#fff',
     },
     icon: {
       component: HomeSVG,
-      activeColor: 'rgba(91,55,183,1)',
+      activeColor: '#fff',
       inactiveColor: 'rgba(0,0,0,1)',
     },
     background: {
-      activeColor: 'rgba(223,215,243,1)',
+      activeColor: '#10b981',
       inactiveColor: 'rgba(223,215,243,0)',
     },
   },
   Search: {
     labelStyle: {
-      color: '#C9379D',
+      color: '#fff',
     },
     icon: {
       component: SearchSVG,
-      activeColor: 'rgba(201,55,157,1)',
+      activeColor: '#fff',
       inactiveColor: 'rgba(0,0,0,1)',
     },
     background: {
-      activeColor: 'rgba(247,215,243,1)',
+      activeColor: '#10b981',
       inactiveColor: 'rgba(247,215,243,0)',
     },
   },
   Favourites: {
     labelStyle: {
-      color: '#1194AA',
+      color: '#fff',
     },
     icon: {
       component: FavouriteSVG,
-      activeColor: 'rgba(17,148,170,1)',
+      activeColor: '#fff',
       inactiveColor: 'rgba(0,0,0,1)',
     },
     background: {
-      activeColor: 'rgba(207,235,239,1)',
+      activeColor: '#10b981',
       inactiveColor: 'rgba(207,235,239,0)',
     },
   },
   Settings: {
     labelStyle: {
-      color: '#E6A919',
+      color: '#fff',
     },
     icon: {
       component: SettingsSVG,
-      activeColor: 'rgba(230,169,25,1)',
+      activeColor: '#fff',
       inactiveColor: 'rgba(0,0,0,1)',
     },
     background: {
-      activeColor: 'rgba(251,239,211,1)',
+      activeColor: '#10b981',
       inactiveColor: 'rgba(251,239,211,0)',
     },
   },
@@ -81,8 +81,8 @@ function TabBar() {
       )}
       tabBarOptions={{
         style: {
-          borderTopStartRadius: 25,
-          borderTopEndRadius: 25,
+          // borderTopStartRadius: 25,
+          // borderTopEndRadius: 25,
           // backgroundColor: 'black',
           // marginHorizontal: 25,
           shadowColor: '#000',

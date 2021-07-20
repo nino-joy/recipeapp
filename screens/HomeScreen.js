@@ -1,6 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
-import {Avatar, Text} from 'native-base';
+import {
+  SafeAreaView,
+  StyleSheet,
+  View,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from 'react-native';
+import {Avatar, Text, IconButton, Icon} from 'native-base';
+import FilterIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import SearchBar from '../components/SearchBar.js';
 
@@ -20,34 +27,49 @@ const HomeScreen = () => {
   const [title, setTitle] = useState('');
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginTop: 15,
-        }}>
-        <View>
-          <Text fontWeight="200" fontSize="md">
-            Good Morning!
-          </Text>
-          <Text fontWeight="700" fontSize="2xl">
-            John Doe
-          </Text>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <SafeAreaView style={styles.container}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginTop: 15,
+          }}>
+          <View>
+            <Text fontWeight="200" fontSize="md">
+              Good Morning!
+            </Text>
+            <Text fontWeight="700" fontSize="2xl">
+              John Doe
+            </Text>
+          </View>
+          <Avatar
+            source={{
+              uri: 'https://pbs.twimg.com/profile_images/1177303899243343872/B0sUJIH0_400x400.jpg',
+            }}></Avatar>
         </View>
-        <Avatar
-          source={{
-            uri: 'https://pbs.twimg.com/profile_images/1177303899243343872/B0sUJIH0_400x400.jpg',
-          }}></Avatar>
-      </View>
 
-      <Text fontSize="2xl" fontWeight="300" marginTop={5} marginBottom={5}>
-        What do you wanna cook today?
-      </Text>
+        <Text fontSize="2xl" fontWeight="300" marginTop={5} marginBottom={5}>
+          What do you wanna cook today?
+        </Text>
 
-      <SearchBar />
-    </SafeAreaView>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <SearchBar />
+          <IconButton
+            variant="solid"
+            icon={
+              <Icon
+                size="sm"
+                as={<FilterIcon name="sort-variant" />}
+                color="white"
+              />
+            }
+            style={{borderRadius: 50}}
+          />
+        </View>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 

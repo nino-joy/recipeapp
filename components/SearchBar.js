@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Dimensions} from 'react-native';
-import {Text, Input} from 'native-base';
+import {Text, Input, Icon} from 'native-base';
+import SearchIcon from 'react-native-vector-icons/AntDesign';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
@@ -8,34 +9,28 @@ const WINDOW_HEIGHT = Dimensions.get('window').height;
 const SearchBar = () => {
   return (
     <Input
-      placeholder="Search"
+      placeholder="Find recipes"
       variant="filled"
-      width="100%"
+      width="80%"
       height="40px"
       bg="gray.200"
       borderRadius={20}
       py={1}
       px={2}
-      //   InputLeftElement={
-      //     <Icon
-      //       size="sm"
-      //       ml={2}
-      //       size={5}
-      //       color="gray.400"
-      //       as={<Ionicons name="ios-search" />}
-      //     />
-      //   }
+      InputLeftElement={
+        <Icon
+          size="sm"
+          ml={2}
+          size={5}
+          color="gray.400"
+          as={<SearchIcon name="search1" />}
+          style={{marginLeft: 13}}
+        />
+      }
     />
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    width: WINDOW_WIDTH - 50,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#E8E8E8',
-  },
-});
+const styles = StyleSheet.create({});
 
 export default SearchBar;
