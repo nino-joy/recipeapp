@@ -2,74 +2,148 @@ import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  View,
   Keyboard,
-  TouchableWithoutFeedback,
+  TouchableOpacity,
 } from 'react-native';
-import {Avatar, Text, IconButton, Icon} from 'native-base';
+import {
+  View,
+  Avatar,
+  Text,
+  IconButton,
+  Icon,
+  FlatList,
+  useToast,
+} from 'native-base';
 import FilterIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import RefreshIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import SearchBar from '../components/SearchBar.js';
+import RandomRecipe from '../components/RandomRecipe.js';
 
-import randomRecipe from '../api/functions.js';
+import {getRandomRecipesInfo} from '../api/functions.js';
+import HomeScreenPlaceholder from '../components/placeholder-skeletons/HomeScreenPlaceholder.js';
 
 const HomeScreen = () => {
-  const getData = async () => {
-    let data = await randomRecipe();
-    setTitle(data.recipes[0].title);
-    // console.log(data);
-  };
+  const [data, setData] = useState([]);
+  const toast = useToast();
 
   useEffect(() => {
-    // getData();
+    getData();
   }, []);
 
-  const [title, setTitle] = useState('');
+  const getData = async () => {
+    let res = await getRandomRecipesInfo();
+    setData(res);
+    // console.log(res);
+  };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <SafeAreaView style={styles.container}>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            marginTop: 15,
-          }}>
-          <View>
-            <Text fontWeight="200" fontSize="md">
-              Good Morning!
-            </Text>
-            <Text fontWeight="700" fontSize="2xl">
-              John Doe
-            </Text>
-          </View>
-          <Avatar
-            source={{
-              uri: 'https://pbs.twimg.com/profile_images/1177303899243343872/B0sUJIH0_400x400.jpg',
-            }}></Avatar>
+    // <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+    <SafeAreaView style={styles.container}>
+      {/* USER INFO AND AVATAR */}
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginTop: 15,
+        }}>
+        <View>
+          <Text fontWeight="200" fontSize="md">
+            Good Morning!
+          </Text>
+          <Text fontWeight="700" fontSize="2xl">
+            John Doe
+          </Text>
         </View>
+        <Avatar
+          source={{
+            uri: 'https://pbs.twimg.com/profile_images/1177303899243343872/B0sUJIH0_400x400.jpg',
+          }}></Avatar>
+      </View>
 
-        <Text fontSize="2xl" fontWeight="300" marginTop={5} marginBottom={5}>
-          What do you wanna cook today?
+      <Text fontSize="2xl" fontWeight="300" marginTop={5} marginBottom={5}>
+        What do you wanna cook today?
+      </Text>
+
+      {/* SEARCHBAR AND FILTER ICON */}
+      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <SearchBar />
+        <IconButton
+          variant="solid"
+          icon={
+            <Icon
+              size="sm"
+              as={<FilterIcon name="sort-variant" />}
+              color="white"
+            />
+          }
+          style={{borderRadius: 50}}
+        />
+      </View>
+
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          marginTop: 35,
+        }}>
+        <Text fontWeight="700" fontSize="2xl">
+          Hand-picked for you
         </Text>
 
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <SearchBar />
-          <IconButton
-            variant="solid"
-            icon={
-              <Icon
-                size="sm"
-                as={<FilterIcon name="sort-variant" />}
-                color="white"
+        <IconButton
+          variant="unstyled"
+          icon={
+            <Icon size="sm" as={<RefreshIcon name="refresh" />} color="black" />
+          }
+          style={{
+            height: 20,
+            width: 20,
+            alignSelf: 'center',
+          }}
+          onPress={() => {
+            toast.show({
+              title: 'Refreshing...',
+              duration: 2000,
+              style: {borderRadius: 50},
+              status: 'info',
+              isClosable: false,
+            });
+            getData();
+          }}
+        />
+      </View>
+      {/* FLATLIST OF RANDOM RECIPES */}
+      {data.length === 0 ? (
+        <HomeScreenPlaceholder />
+      ) : (
+        <FlatList
+          data={data}
+          horizontal={true}
+          keyExtractor={item => item.id}
+          showsHorizontalScrollIndicator={false}
+          style={{
+            // borderWidth: 1,
+            // borderColor: 'red',
+            marginTop: 15,
+            flexGrow: 0,
+          }}
+          ItemSeparatorComponent={() => <View style={{width: 30}} />}
+          renderItem={({item}) => (
+            <TouchableOpacity key={item.id} onPress={() => {}} style={{}}>
+              <RandomRecipe
+                title={item.title}
+                imageURL={item.image}
+                servings={item.servings}
+                readyInMinutes={item.readyInMinutes}
               />
-            }
-            style={{borderRadius: 50}}
-          />
-        </View>
-      </SafeAreaView>
-    </TouchableWithoutFeedback>
+            </TouchableOpacity>
+          )}
+        />
+      )}
+    </SafeAreaView>
+    // </TouchableWithoutFeedback>
   );
 };
 
@@ -78,7 +152,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 25,
     // borderWidth: 1,
-    borderColor: 'red',
+    // borderColor: 'red',
   },
 });
 
