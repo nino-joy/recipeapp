@@ -15,6 +15,7 @@ export default function HomeScreenPlaceholder() {
 
 const styles = StyleSheet.create({
   container: {
+    width: WINDOW_HEIGHT,
     height: 0.23 * WINDOW_HEIGHT,
     alignItems: 'center',
     justifyContent: 'center',

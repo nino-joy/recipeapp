@@ -14,6 +14,7 @@ import {
   FlatList,
   useToast,
 } from 'native-base';
+
 import FilterIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import RefreshIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -28,13 +29,13 @@ const HomeScreen = () => {
   const toast = useToast();
 
   useEffect(() => {
-    getData();
+    // getData();
   }, []);
 
   const getData = async () => {
     let res = await getRandomRecipesInfo();
     setData(res);
-    // console.log(res);
+    // console.log(data);
   };
 
   return (
@@ -82,6 +83,7 @@ const HomeScreen = () => {
         />
       </View>
 
+      {/* TITLE AND REFRESH BUTTON */}
       <View
         style={{
           flexDirection: 'row',

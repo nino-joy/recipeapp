@@ -6,16 +6,19 @@ import SearchIcon from 'react-native-vector-icons/AntDesign';
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
-const SearchBar = () => {
+const SearchBar = ({value, onChange, onSubmitEditing}) => {
   return (
     <Input
+      value={value}
+      onChangeText={onChange}
+      onSubmitEditing={onSubmitEditing}
       placeholder="Find recipes"
       variant="filled"
       width="80%"
       height="40px"
       bg="gray.200"
       borderRadius={20}
-      py={1}
+      py={0}
       px={2}
       InputLeftElement={
         <Icon
