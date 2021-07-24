@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, SafeAreaView} from 'react-native';
 import {Text, View, IconButton, Icon, FlatList, Spinner} from 'native-base';
+import {trackPromise, usePromiseTracker} from 'react-promise-tracker';
 
 import FilterIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -11,11 +12,12 @@ import SearchResult from '../components/SearchResult.js';
 const SearchScreen = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResultsArray, setSearchResultsArray] = useState([]);
+  const {promiseInProgress} = usePromiseTracker();
 
   const getSearchResults = async () => {
-    let res = await searchResults(searchTerm);
+    let res = await trackPromise(searchResults(searchTerm));
     setSearchResultsArray(res.results);
-    console.log(searchResultsArray);
+    // console.log(searchResultsArray);
   };
 
   return (
@@ -38,8 +40,9 @@ const SearchScreen = () => {
           style={{borderRadius: 50}}
         />
       </View>
-      {searchResultsArray.length === 0 ? (
-        <Spinner size="lg" style={{flex: 1}} />
+
+      {promiseInProgress ? (
+        <Spinner style={{flex: 1}} size="large" />
       ) : (
         <FlatList
           data={searchResultsArray}
@@ -47,6 +50,7 @@ const SearchScreen = () => {
           showsVerticalScrollIndicator={false}
           ItemSeparatorComponent={() => <View style={{height: 30}} />}
           style={{marginTop: 15}}
+          contentContainerStyle={{paddingBottom: 30}}
           renderItem={({item}) => (
             <SearchResult title={item.title} imageURL={item.image} />
           )}

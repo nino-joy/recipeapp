@@ -28,10 +28,13 @@ export const getRandomRecipesInfo = async () => {
 
 export const searchResults = async searchTerm => {
   try {
-    const res = await instance.get('/complexSearch', {
-      params: {query: searchTerm, number: 5},
-    });
-    return res.data;
+    if (searchTerm === '') return [];
+    else {
+      const res = await instance.get('/complexSearch', {
+        params: {query: searchTerm, number: 5},
+      });
+      return res.data;
+    }
   } catch (err) {
     return err;
   }

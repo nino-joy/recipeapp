@@ -12,6 +12,10 @@ const SearchBar = ({value, onChange, onSubmitEditing}) => {
       value={value}
       onChangeText={onChange}
       onSubmitEditing={onSubmitEditing}
+      autoCorrect={false}
+      autoCapitalize="none"
+      autoCompleteType="off"
+      blurOnSubmit={true}
       placeholder="Find recipes"
       variant="filled"
       width="80%"

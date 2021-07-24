@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Keyboard,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import {
   View,
@@ -13,7 +14,9 @@ import {
   Icon,
   FlatList,
   useToast,
+  Spinner,
 } from 'native-base';
+import {trackPromise, usePromiseTracker} from 'react-promise-tracker';
 
 import FilterIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import RefreshIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -22,20 +25,21 @@ import SearchBar from '../components/SearchBar.js';
 import RandomRecipe from '../components/RandomRecipe.js';
 
 import {getRandomRecipesInfo} from '../api/functions.js';
-import HomeScreenPlaceholder from '../components/placeholder-skeletons/HomeScreenPlaceholder.js';
+
+const WINDOW_HEIGHT = Dimensions.get('window').height;
 
 const HomeScreen = () => {
   const [data, setData] = useState([]);
   const toast = useToast();
+  const {promiseInProgress} = usePromiseTracker();
 
   useEffect(() => {
-    // getData();
+    getData();
   }, []);
 
   const getData = async () => {
-    let res = await getRandomRecipesInfo();
+    let res = await trackPromise(getRandomRecipesInfo());
     setData(res);
-    // console.log(data);
   };
 
   return (
@@ -117,8 +121,8 @@ const HomeScreen = () => {
         />
       </View>
       {/* FLATLIST OF RANDOM RECIPES */}
-      {data.length === 0 ? (
-        <HomeScreenPlaceholder />
+      {promiseInProgress ? (
+        <Spinner size="sm" style={{height: 0.23 * WINDOW_HEIGHT}} />
       ) : (
         <FlatList
           data={data}

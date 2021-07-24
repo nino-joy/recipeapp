@@ -38,8 +38,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,.5)',
     alignItems: 'center',
     justifyContent: 'center',
-    // padding: 15,
-    // paddingVertical: 35,
+    padding: 12,
     borderRadius: 15,
   },
 });
