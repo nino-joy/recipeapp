@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "25823597002",
+    "project_id": "recipe-app-b4442",
+    "storage_bucket": "recipe-app-b4442.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25823597002:android:f026d9f4d9ea4c21a83f33",
+        "android_client_info": {
+          "package_name": "com.recipeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "25823597002-6in6ooqbsg2p1tolog0cedq6jdsmt3da.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBOEnj6WHQMK0SQw8yhzqaYOVndMWMc90"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "25823597002-6in6ooqbsg2p1tolog0cedq6jdsmt3da.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "25823597002-c75dmf1ejn5jj438ndg0msovgee94tml.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ninojoy.recipeapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

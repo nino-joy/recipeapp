@@ -34,7 +34,7 @@ const HomeScreen = () => {
   const {promiseInProgress} = usePromiseTracker();
 
   useEffect(() => {
-    getData();
+    // getData();
   }, []);
 
   const getData = async () => {
