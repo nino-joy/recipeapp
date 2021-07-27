@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "25823597002-6ouvv8hlj6vk4784bhq1vqmp5h1gbdkf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.recipeapp",
+            "certificate_hash": "c9010779bdf3ab0ea74a3e83676e6f2d536c8144"
+          }
+        },
+        {
           "client_id": "25823597002-6in6ooqbsg2p1tolog0cedq6jdsmt3da.apps.googleusercontent.com",
           "client_type": 3
         }

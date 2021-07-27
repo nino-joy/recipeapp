@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -25,6 +25,7 @@ import SearchBar from '../components/SearchBar.js';
 import RandomRecipe from '../components/RandomRecipe.js';
 
 import {getRandomRecipesInfo} from '../api/functions.js';
+import {AuthContext} from '../navigation/AuthProvider.js';
 
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
@@ -32,6 +33,8 @@ const HomeScreen = () => {
   const [data, setData] = useState([]);
   const toast = useToast();
   const {promiseInProgress} = usePromiseTracker();
+
+  const {user} = useContext(AuthContext);
 
   useEffect(() => {
     // getData();
@@ -58,12 +61,12 @@ const HomeScreen = () => {
             Good Morning!
           </Text>
           <Text fontWeight="700" fontSize="2xl">
-            John Doe
+            {user.displayName}
           </Text>
         </View>
         <Avatar
           source={{
-            uri: 'https://pbs.twimg.com/profile_images/1177303899243343872/B0sUJIH0_400x400.jpg',
+            uri: user.photoURL,
           }}></Avatar>
       </View>
 

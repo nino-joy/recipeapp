@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Text} from 'native-base';
+import {Text, Button} from 'native-base';
+import {AuthContext} from '../navigation/AuthProvider';
 
 const SettingsScreen = () => {
+  const {logout} = useContext(AuthContext);
   return (
     <View style={styles.container}>
-      <Text>Settings Screen</Text>
+      <Button width="80%" borderRadius={40} onPress={logout}>
+        Logout
+      </Button>
     </View>
   );
 };
