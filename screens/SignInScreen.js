@@ -37,7 +37,7 @@ const SignInScreen = ({navigation}) => {
           Email ID
         </FormControl.Label>
         <Input
-          borderRadius={50}
+          borderRadius={15}
           value={email}
           onChangeText={value => setEmail(value)}
           autoCapitalize="none"
@@ -51,7 +51,7 @@ const SignInScreen = ({navigation}) => {
         </FormControl.Label>
         <Input
           type="password"
-          borderRadius={50}
+          borderRadius={15}
           value={password}
           onChangeText={setPassword}
         />
@@ -66,7 +66,7 @@ const SignInScreen = ({navigation}) => {
 
       <Button
         width="80%"
-        borderRadius={40}
+        borderRadius={15}
         mt={5}
         onPress={() => login(email, password)}>
         Login

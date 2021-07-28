@@ -7,7 +7,11 @@ const SettingsScreen = () => {
   const {logout} = useContext(AuthContext);
   return (
     <View style={styles.container}>
-      <Button width="80%" borderRadius={40} onPress={logout}>
+      <Button
+        width="30%"
+        borderRadius={40}
+        onPress={logout}
+        backgroundColor="red.600">
         Logout
       </Button>
     </View>

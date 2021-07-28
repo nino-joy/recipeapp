@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyleSheet, View, ImageBackground, Dimensions} from 'react-native';
-import {Text} from 'native-base';
+import {StyleSheet, ImageBackground, Dimensions} from 'react-native';
+import {Text, View} from 'native-base';
 
 import IconAndText from './IconAndText';
 import timer from '../assets/icons/ui-icons/timer.js';

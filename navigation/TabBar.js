@@ -1,11 +1,14 @@
 import React from 'react';
+import {Platform} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import AnimatedTabBar from '@gorhom/animated-tabbar';
 
 import HomeScreen from '../screens/HomeScreen';
 import FavouritesScreen from '../screens/FavouritesScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import SearchScreen from '../screens/SearchScreen';
+import RecipeInfoScreen1 from '../screens/RecipeInfoScreen1';
 
 import HomeSVG from '../assets/icons/HomeSVG';
 import SearchSVG from '../assets/icons/SearchSVG';
@@ -71,6 +74,17 @@ const tabs = {
   },
 };
 
+const HomeStack = createStackNavigator();
+
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator headerMode="none">
+      <HomeStack.Screen name="Home" component={HomeScreen} />
+      <HomeStack.Screen name="Recipe Info 1" component={RecipeInfoScreen1} />
+    </HomeStack.Navigator>
+  );
+}
+
 const Tab = createBottomTabNavigator();
 
 function TabBar() {
@@ -81,10 +95,8 @@ function TabBar() {
       )}
       tabBarOptions={{
         style: {
-          // borderTopStartRadius: 25,
-          // borderTopEndRadius: 25,
-          // backgroundColor: 'black',
-          // marginHorizontal: 25,
+          borderTopStartRadius: Platform.OS === 'ios' ? 25 : 0,
+          borderTopEndRadius: Platform.OS === 'ios' ? 25 : 0,
           shadowColor: '#000',
           shadowOffset: {
             width: 0,
@@ -94,7 +106,7 @@ function TabBar() {
           shadowRadius: 7,
         },
       }}>
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Home" component={HomeStackScreen} />
       <Tab.Screen name="Search" component={SearchScreen} />
       <Tab.Screen name="Favourites" component={FavouritesScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />

@@ -43,7 +43,7 @@ const SignUpScreen = ({navigation}) => {
           Email ID
         </FormControl.Label>
         <Input
-          borderRadius={50}
+          borderRadius={15}
           value={email}
           onChangeText={setEmail}
           autoCapitalize="none"
@@ -57,7 +57,7 @@ const SignUpScreen = ({navigation}) => {
         </FormControl.Label>
         <Input
           // type="password"
-          borderRadius={50}
+          borderRadius={15}
           value={password}
           onChangeText={setPassword}
         />
@@ -68,11 +68,11 @@ const SignUpScreen = ({navigation}) => {
           _text={{color: 'muted.700', fontSize: 'sm', fontWeight: 600}}>
           Confirm Password
         </FormControl.Label>
-        <Input type="password" borderRadius={50} />
+        <Input type="password" borderRadius={15} />
       </FormControl>
       <Button
         width="80%"
-        borderRadius={40}
+        borderRadius={15}
         mt={5}
         onPress={() => register(email, password)}>
         Sign Up

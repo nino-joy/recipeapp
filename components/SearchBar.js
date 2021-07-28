@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Dimensions} from 'react-native';
+import {StyleSheet, View, Dimensions, Platform} from 'react-native';
 import {Text, Input, Icon} from 'native-base';
 import SearchIcon from 'react-native-vector-icons/AntDesign';
 
@@ -22,8 +22,8 @@ const SearchBar = ({value, onChange, onSubmitEditing}) => {
       height="40px"
       bg="gray.200"
       borderRadius={20}
-      py={0}
-      px={2}
+      px={3}
+      pb={Platform.OS === 'android' ? 1 : null}
       InputLeftElement={
         <Icon
           size="sm"
