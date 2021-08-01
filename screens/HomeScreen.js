@@ -149,7 +149,7 @@ const HomeScreen = ({navigation}) => {
                 onPress={() =>
                   navigation.navigate('Recipe Info 1', {id: item.id})
                 }
-                style={{}}>
+                style={{height: 0.23 * WINDOW_HEIGHT}}>
                 <RandomRecipe
                   title={item.title}
                   imageURL={item.image}

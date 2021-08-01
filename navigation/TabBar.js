@@ -1,8 +1,6 @@
 import React from 'react';
-import {Platform} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
-import AnimatedTabBar from '@gorhom/animated-tabbar';
 
 import HomeScreen from '../screens/HomeScreen';
 import FavouritesScreen from '../screens/FavouritesScreen';
@@ -14,6 +12,76 @@ import HomeSVG from '../assets/icons/HomeSVG';
 import SearchSVG from '../assets/icons/SearchSVG';
 import FavouriteSVG from '../assets/icons/FavouriteSVG';
 import SettingsSVG from '../assets/icons/SettingsSVG';
+
+import {AntDesign} from 'react-native-vector-icons/AntDesign';
+
+const HomeStack = createStackNavigator();
+
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator headerMode="none">
+      <HomeStack.Screen name="Home" component={HomeScreen} />
+      <HomeStack.Screen name="Recipe Info 1" component={RecipeInfoScreen1} />
+    </HomeStack.Navigator>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+
+function TabBar() {
+  return (
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: '#10b981',
+        labelStyle: {
+          fontFamily: 'Poppins-medium',
+          fontSize: 12,
+        },
+        style: {
+          position: 'absolute',
+          bottom: 25,
+          left: 25,
+          right: 25,
+          borderWidth: 0.5,
+          borderTopWidth: 0.5,
+          borderRadius: 15,
+          shadowColor: '#000000',
+          // shadowOpacity: 0.7,
+          // // shadowRadius: 2,
+          // shadowOffset: {
+          //   height: 0,
+          //   width: 0,
+          // },
+          // elevation: 4,
+        },
+      }}
+
+      // tabBarOptions={{
+      //   style: {
+      //     position: 'absolute',
+      //     bottom: 25,
+      //     left: 25,
+      //     right: 25,
+      //     borderRadius: 15,
+      //     // backgroundColor: 'red',
+      //     // borderTopStartRadius: Platform.OS === 'ios' ? 25 : 0,
+      //     // borderTopEndRadius: Platform.OS === 'ios' ? 25 : 0,
+      //   },
+      // }}
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeStackScreen}
+        options={{
+          tabBarLabel: 'Home',
+        }}
+      />
+      <Tab.Screen name="Search" component={SearchScreen} />
+      <Tab.Screen name="Favourites" component={FavouritesScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
+  );
+}
 
 const tabs = {
   Home: {
@@ -73,45 +141,5 @@ const tabs = {
     },
   },
 };
-
-const HomeStack = createStackNavigator();
-
-function HomeStackScreen() {
-  return (
-    <HomeStack.Navigator headerMode="none">
-      <HomeStack.Screen name="Home" component={HomeScreen} />
-      <HomeStack.Screen name="Recipe Info 1" component={RecipeInfoScreen1} />
-    </HomeStack.Navigator>
-  );
-}
-
-const Tab = createBottomTabNavigator();
-
-function TabBar() {
-  return (
-    <Tab.Navigator
-      tabBar={props => (
-        <AnimatedTabBar tabs={tabs} {...props} preset="bubble" />
-      )}
-      tabBarOptions={{
-        style: {
-          borderTopStartRadius: Platform.OS === 'ios' ? 25 : 0,
-          borderTopEndRadius: Platform.OS === 'ios' ? 25 : 0,
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 0,
-          },
-          shadowOpacity: 0.3,
-          shadowRadius: 7,
-        },
-      }}>
-      <Tab.Screen name="Home" component={HomeStackScreen} />
-      <Tab.Screen name="Search" component={SearchScreen} />
-      <Tab.Screen name="Favourites" component={FavouritesScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
-    </Tab.Navigator>
-  );
-}
 
 export default TabBar;

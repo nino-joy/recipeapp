@@ -36,12 +36,15 @@ const RecipeInfoScreen1 = ({route, navigation}) => {
           uri: `https://spoonacular.com/recipeImages/${data.id}-636x393.jpg`,
         }}
         resizeMode="cover"
-        imageStyle={{flex: 1, height: '100%'}}
+        imageStyle={{
+          height: '100%',
+          // flex:1
+        }}
         style={{
           width: '100%',
           height: '35%',
         }}>
-        {/* adding dark shade */}
+        {/* add dark shade */}
 
         <Text mt={'30%'} ml={25} fontSize="3xl" bold={true} color="white">
           {data.title}
