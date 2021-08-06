@@ -1,5 +1,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import HomeScreen from '../screens/HomeScreen';
@@ -13,76 +14,55 @@ import SearchSVG from '../assets/icons/SearchSVG';
 import FavouriteSVG from '../assets/icons/FavouriteSVG';
 import SettingsSVG from '../assets/icons/SettingsSVG';
 
-import {AntDesign} from 'react-native-vector-icons/AntDesign';
-
 const HomeStack = createStackNavigator();
 
 function HomeStackScreen() {
   return (
-    <HomeStack.Navigator headerMode="none">
+    <HomeStack.Navigator screenOptions={{headerShown: false}}>
       <HomeStack.Screen name="Home" component={HomeScreen} />
       <HomeStack.Screen name="Recipe Info 1" component={RecipeInfoScreen1} />
     </HomeStack.Navigator>
   );
 }
 
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
-function TabBar() {
+const TabBar = () => {
   return (
-    <Tab.Navigator
-      tabBarOptions={{
-        activeTintColor: '#10b981',
-        labelStyle: {
-          fontFamily: 'Poppins-medium',
-          fontSize: 12,
-        },
-        style: {
-          position: 'absolute',
-          bottom: 25,
-          left: 25,
-          right: 25,
-          borderWidth: 0.5,
-          borderTopWidth: 0.5,
-          borderRadius: 15,
-          shadowColor: '#000000',
-          // shadowOpacity: 0.7,
-          // // shadowRadius: 2,
-          // shadowOffset: {
-          //   height: 0,
-          //   width: 0,
-          // },
-          // elevation: 4,
-        },
-      }}
-
-      // tabBarOptions={{
-      //   style: {
-      //     position: 'absolute',
-      //     bottom: 25,
-      //     left: 25,
-      //     right: 25,
-      //     borderRadius: 15,
-      //     // backgroundColor: 'red',
-      //     // borderTopStartRadius: Platform.OS === 'ios' ? 25 : 0,
-      //     // borderTopEndRadius: Platform.OS === 'ios' ? 25 : 0,
-      //   },
-      // }}
-    >
+    <Tab.Navigator activeColor="#10b981" barStyle={{backgroundColor: 'white'}}>
       <Tab.Screen
         name="Home"
         component={HomeStackScreen}
         options={{
-          tabBarLabel: 'Home',
+          tabBarIcon: ({color}) => <HomeSVG size={27} color={color} />,
         }}
       />
-      <Tab.Screen name="Search" component={SearchScreen} />
-      <Tab.Screen name="Favourites" component={FavouritesScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{
+          tabBarIcon: ({color}) => <SearchSVG size={27} color={color} />,
+        }}
+      />
+      <Tab.Screen
+        name="Favourites"
+        component={FavouritesScreen}
+        options={{
+          tabBarIcon: ({color}) => <FavouriteSVG size={27} color={color} />,
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          tabBarIcon: ({color}) => <SettingsSVG size={27} color={color} />,
+        }}
+      />
     </Tab.Navigator>
   );
-}
+};
 
+// gorhom/animated-tabbar [can be added if reanimated updates to v2.0]
 const tabs = {
   Home: {
     labelStyle: {

@@ -1,12 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, SafeAreaView, ImageBackground} from 'react-native';
+import {StyleSheet, SafeAreaView, Dimensions} from 'react-native';
 import {Text, Image, View, StatusBar} from 'native-base';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import BackIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import FavouriteIcon from 'react-native-vector-icons/AntDesign';
+
+const WINDOW_WIDTH = Dimensions.get('window').width;
 
 const RecipeInfoScreen1 = ({route, navigation}) => {
   const [data, setData] = useState({});
+  const [fav, setFav] = useState(false);
 
   useEffect(() => {
     retrieveDataFromStore();
@@ -29,54 +33,44 @@ const RecipeInfoScreen1 = ({route, navigation}) => {
   };
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
-      <ImageBackground
-        source={{
-          uri: `https://spoonacular.com/recipeImages/${data.id}-636x393.jpg`,
-        }}
-        resizeMode="cover"
-        imageStyle={{
-          height: '100%',
-          // flex:1
-        }}
-        style={{
-          width: '100%',
-          height: '35%',
-        }}>
-        {/* add dark shade */}
+    <SafeAreaView style={styles.container}>
+      {/* <StatusBar barStyle="light-content" /> */}
 
-        <Text mt={'30%'} ml={25} fontSize="3xl" bold={true} color="white">
+      <View
+        flexDirection="row"
+        mt={15}
+        mx={25}
+        alignItems="center"
+        justifyContent="space-between">
+        <BackIcon name="chevron-left" onPress={navigation.goBack} size={40} />
+        <Text fontSize="xl" bold width={WINDOW_WIDTH / 1.9} textAlign="center">
           {data.title}
         </Text>
-      </ImageBackground>
+        <FavouriteIcon
+          name={fav ? 'heart' : 'hearto'}
+          onPress={() => (!fav ? setFav(true) : setFav(false))}
+          size={25}
+        />
+      </View>
 
-      <BackIcon
-        name="chevron-left"
-        color="white"
-        style={{
-          position: 'absolute',
-          top: Platform.OS === 'ios' ? 70 : 25,
-          left: 25,
+      <Image
+        source={{
+          uri: data.image,
         }}
-        onPress={navigation.goBack}
-        size={40}
+        resizeMode="cover"
+        mx={25}
+        mt={8}
+        alt="image"
+        height={200}
+        borderRadius={15}
       />
-      <Text>{route.params.id}</Text>
-      <Text>Recipe Info Screen 1</Text>
-      <Text>{data.title}</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  content: {
-    // flex: 1,
-    backgroundColor: 'rgba(0,0,0,.5)',
-    height: '100%',
   },
 });
 
