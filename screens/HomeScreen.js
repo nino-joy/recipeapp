@@ -121,9 +121,8 @@ const HomeScreen = ({navigation}) => {
             onPress={() => {
               toast.show({
                 title: 'Refreshing...',
-                duration: 2000,
-                status: 'info',
-                isClosable: false,
+                duration: 1500,
+                // status: 'info',
                 borderRadius: 15,
               });
               getData();
@@ -137,7 +136,7 @@ const HomeScreen = ({navigation}) => {
         ) : (
           <FlatList
             data={data}
-            horizontal={true}
+            horizontal
             keyExtractor={item => item.id}
             showsHorizontalScrollIndicator={false}
             mt={15}

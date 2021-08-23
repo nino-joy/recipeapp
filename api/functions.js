@@ -17,6 +17,7 @@ export const getRandomRecipesInfo = async () => {
     //get bulkInfo based on the required IDs
     const res2 = await instance.get('/informationBulk', {
       params: {
+        includeNutrition: true,
         ids: `${ids[0]},${ids[1]}`,
       },
     });

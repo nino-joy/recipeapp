@@ -14,8 +14,8 @@ import java.util.List;
 import com.horcrux.svg.SvgPackage;
 import androidx.multidex.MultiDexApplication;
 
-// import com.facebook.react.bridge.JSIModulePackage; // <- add
-// import com.swmansion.reanimated.ReanimatedJSIModulePackage; // <- add
+import com.facebook.react.bridge.JSIModulePackage; // <- add
+import com.swmansion.reanimated.ReanimatedJSIModulePackage; // <- add
 
 public class MainApplication extends MultiDexApplication implements ReactApplication {
 
@@ -41,10 +41,11 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
           return "index";
         }
 
-      //   @Override
-      //   protected JSIModulePackage getJSIModulePackage() {
-      //     return new ReanimatedJSIModulePackage(); // <- add
-      // }
+        @Override
+        protected JSIModulePackage getJSIModulePackage() {
+          return new ReanimatedJSIModulePackage(); // <- add
+        }
+
       };
 
   @Override

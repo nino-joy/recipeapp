@@ -7,7 +7,7 @@ import {SvgXml} from 'react-native-svg';
 const IconAndText = ({icon, text, serving}) => {
   return (
     <View style={styles.container}>
-      <SvgXml width="20" height="20" xml={icon} />
+      <SvgXml width="20" height="20" xml={icon} fill="#fff" />
       {serving === true && (
         <Text fontSize="sm" color="white" marginLeft={2} fontWeight="200">
           {text} servings

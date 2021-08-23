@@ -31,10 +31,11 @@ const TabBar = () => {
   return (
     <Tab.Navigator activeColor="#10b981" barStyle={{backgroundColor: 'white'}}>
       <Tab.Screen
-        name="Home"
+        name="HomeStack"
         component={HomeStackScreen}
         options={{
           tabBarIcon: ({color}) => <HomeSVG size={27} color={color} />,
+          tabBarLabel: 'Home',
         }}
       />
       <Tab.Screen
